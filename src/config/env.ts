@@ -7,7 +7,7 @@ declare let process: {
         DATABASE_URL: string,
         DB_NAME: string,
         PORT: string,
-        IMGUR_CLIENT_ID: string
+        IMGUR_ACCESS_TOKEN: string
     }
 }
 
@@ -16,5 +16,5 @@ export const {
     DATABASE_URL = '',
     DB_NAME = '',
     PORT = '8080',
-    IMGUR_CLIENT_ID = ''
+    IMGUR_ACCESS_TOKEN = ''
 } = process.env

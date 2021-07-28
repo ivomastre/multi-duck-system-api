@@ -27,10 +27,16 @@ cluesRoutes.get(
 cluesRoutes.post(
   '/clues',
   multer.array('photos', 20),
+  joiMiddleware(Joi.object({
+    body: {
+      title: Joi.string().required(),
+      description: Joi.string()
+    }
+  })),
   handleAsyncErr(async (req: ICreateClueRequest, res) => {
     const controller = new CluesController();
     return res.json(await controller.create({
-      photos: await uploadToImgur(req.files),
+      photos: await uploadToImgur(req.files, { ...req.body }),
       ...req.body
     }))
   })
