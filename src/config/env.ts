@@ -6,7 +6,8 @@ declare let process: {
         NODE_ENV: 'prod' | 'dev' | 'test',
         DATABASE_URL: string,
         DB_NAME: string,
-        PORT: string
+        PORT: string,
+        IMGUR_CLIENT_ID: string
     }
 }
 
@@ -14,5 +15,6 @@ export const {
     NODE_ENV = 'dev',
     DATABASE_URL = '',
     DB_NAME = '',
-    PORT = '8080'
+    PORT = '8080',
+    IMGUR_CLIENT_ID = ''
 } = process.env

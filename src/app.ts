@@ -11,8 +11,8 @@ class App {
   constructor() {
     this.express = express();
     this.middlewares();
-    this.routes();
     this.database();
+    this.routes();
   }
 
   private middlewares = (): void => {
@@ -21,8 +21,8 @@ class App {
 
   private routes = (): void => {
     this.express.use(routes);
-    this.express.use(errorHandler);
     this.express.use(notFoundHandler);
+    this.express.use(errorHandler);
   };
 
   private database = async (): Promise<void> => {

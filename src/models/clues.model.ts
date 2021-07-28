@@ -3,7 +3,7 @@ import { Schema, model } from 'mongoose'
 export interface IClues {
     title: string,
     description: string,
-    photos: string[]
+    photos: string[],
 }
 const CluesSchema = new Schema({
     title: String,
