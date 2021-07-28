@@ -7,5 +7,15 @@ export default multer({
             const filename = `${time}-${file.originalname}`;
             cb(null, filename);
         }
-    })
+    }),
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype.indexOf('image/') !== 0) {
+            cb(new Error('File is not an image'));
+        } else {
+            cb(null, true);
+        }
+    },
+    limits: {
+        fileSize: 2000000,
+    }
 })
