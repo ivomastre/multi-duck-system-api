@@ -7,7 +7,7 @@ import Joi from 'joi';
 import multer from '../config/multerConfig'
 import { ICreateClueRequest } from '../@types/routes/clues';
 import uploadToImgur from '../utils/uploadToImgur';
-import { handleErr } from '../utils/routeErrorHandler';
+import { handleAsyncErr } from '../utils/routeErrorHandler';
 const cluesRoutes = Router();
 
 cluesRoutes.get(
@@ -18,7 +18,7 @@ cluesRoutes.get(
       offset: Joi.number().integer().min(0).default(0),
     }
   })),
-  handleErr(async (req: IGenericPagination, res) => { 
+  handleAsyncErr(async (req: IGenericPagination, res) => { 
     const controller = new CluesController();
     return res.json(await controller.list(req.query))
   })
@@ -27,7 +27,7 @@ cluesRoutes.get(
 cluesRoutes.post(
   '/clues',
   multer.array('photos', 20),
-  handleErr(async (req: ICreateClueRequest, res) => {
+  handleAsyncErr(async (req: ICreateClueRequest, res) => {
     const controller = new CluesController();
     return res.json(await controller.create({
       photos: await uploadToImgur(req.files),
