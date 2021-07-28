@@ -4,7 +4,7 @@ import routes from './routes';
 import errorHandler from './middleware/errorHandler';
 import 'express-async-errors';
 import notFoundHandler from './middleware/notFoundHandler';
-
+import cors from 'cors'
 class App {
   express: Application;
 
@@ -17,6 +17,7 @@ class App {
 
   private middlewares = (): void => {
     this.express.use(express.json());
+    this.express.use(cors())
     this.express.use(express.urlencoded({ extended: true }));
   };
 
